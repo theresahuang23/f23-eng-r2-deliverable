@@ -61,6 +61,7 @@ const defaultValues: Partial<FormData> = {
 export default function AddSpeciesDialog({ userId }: { userId: string }) {
   const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);
+  const [showLearnMore, setShowLearnMore] = useState<boolean>(false); // State to control "Learn More" content
 
   const form = useForm<FormData>({
     resolver: zodResolver(speciesSchema),
@@ -248,6 +249,19 @@ export default function AddSpeciesDialog({ userId }: { userId: string }) {
             </div>
           </form>
         </Form>
+
+        {/* Learn More content */}
+        {showLearnMore && (
+          <div>
+            <p>Additional Details:</p>
+            {/* Add additional details here */}
+          </div>
+        )}
+
+        {/* Button to toggle Learn More */}
+        <Button onClick={() => setShowLearnMore(!showLearnMore)}>
+          {showLearnMore ? "Hide Details" : "Learn More"}
+        </Button>
       </DialogContent>
     </Dialog>
   );
